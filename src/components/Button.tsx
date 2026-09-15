@@ -11,6 +11,8 @@ interface ButtonProps {
   disabled?: boolean
 }
 
+const DISABLED_STYLE = 'cursor-default bg-gray-300 text-gray-600 hover:bg-gray-300 hover:text-gray-600'
+
 export default function Button({ name, onClick, size, type = 'button', className = '', disabled = false }: ButtonProps) {
   const style: CSSProperties | undefined = size !== undefined ? { fontSize: `${size}pt` } : undefined
 
@@ -19,7 +21,7 @@ export default function Button({ name, onClick, size, type = 'button', className
       type={type}
       disabled={disabled}
       style={style}
-      className={`bg-(--primary-color) text-(--text-color) hover:bg-(--tertiary-color) hover:text-(--text-color2) font-bold px-2 py-1 rounded transition-colors duration-200 cursor-pointer my-1 w-full ${className}`}
+      className={`bg-(--primary-color) text-(--text-color) hover:bg-(--tertiary-color) hover:text-(--text-color2) font-bold px-2 py-1 rounded transition-colors duration-200 cursor-pointer my-1 w-full ${disabled ? DISABLED_STYLE : ''} ${className}`}
       onClick={onClick}
     >
       {name}
