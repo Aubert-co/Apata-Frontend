@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "vitest",
+    "test": "vitest --mode test",
     "test:run": "vitest run",
     "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate"
