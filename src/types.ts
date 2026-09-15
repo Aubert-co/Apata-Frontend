@@ -41,3 +41,20 @@ export interface LoginResponse {
 export interface UpdateResult {
   count: number
 }
+
+export type DonationItem =
+  | 'racao'
+  | 'remedios'
+  | 'roupas'
+  | 'calcados'
+  | 'livros'
+  | 'artesanato'
+  | 'plantas'
+  | 'outro'
+
+export interface DonationFormValues {
+  nome: string
+  telefone: string
+  item: DonationItem | ''
+  observacoes: string
+}

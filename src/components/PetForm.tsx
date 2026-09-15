@@ -1,11 +1,12 @@
 'use client'
 
-import { useRef, useState, type ChangeEvent, type FocusEvent } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { PatternFormat } from 'react-number-format'
 import Button from './Button'
 import Spinner from './Spinner'
 import { createPet } from '@/lib/api'
+import { scrollIntoCenter } from '@/lib/focus'
 import type { PetFormValues } from '@/types'
 
 const DEFAULT_PHONE = '93991185009'
@@ -20,13 +21,6 @@ const INITIAL_VALUES: PetFormValues = {
   sexo: '',
   descricao: '',
   contato: DEFAULT_PHONE,
-}
-
-function scrollIntoCenter(e: FocusEvent<HTMLElement>) {
-  const target = e.target
-  setTimeout(() => {
-    target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, 300)
 }
 
 export default function PetForm() {
@@ -182,7 +176,6 @@ export default function PetForm() {
           type="submit"
           size={20}
           disabled={status !== 'inicio'}
-          className={status === 'inicio' ? '' : 'cursor-default bg-gray-300 text-gray-600 hover:bg-gray-300 hover:text-gray-600'}
         />
       </form>
 

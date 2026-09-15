@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import Link from 'next/link'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { CiPill } from 'react-icons/ci'
 import { FaTshirt } from 'react-icons/fa'
@@ -99,9 +100,9 @@ export default function HomePage() {
                     Doe remédios para os animais ou apoie nosso Bazar com roupas, calçados, artesanato, livros ou plantas.
                   </p>
 
-                  <a href="https://forms.gle/jFhi6fvzJgtbiKV68" target="_blank" rel="noopener noreferrer">
+                  <Link href="/doar">
                     <Button name={<p className="flex whitespace-nowrap items-center justify-center gap-1"> Quero Doar</p>} size={15} />
-                  </a>
+                  </Link>
                 </div>
               }
             />
