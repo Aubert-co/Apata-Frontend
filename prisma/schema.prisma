@@ -39,3 +39,14 @@ model Pet {
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String @db.ObjectId
 }
+
+model Doacao {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  nomeCompleto String
+  whatsapp     String
+  tipos        String[]
+  observacoes  String?
+  status       String   @default("pendente")
+
+  createdAt DateTime @default(now())
+}
