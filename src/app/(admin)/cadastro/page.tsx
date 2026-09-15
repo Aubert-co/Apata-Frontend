@@ -1,3 +1,4 @@
+"use client"
 import PetForm from '@/components/PetForm'
 import { useSession } from '@/hooks/useSession'
 import { redirect } from 'next/navigation'
