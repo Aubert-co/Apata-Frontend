@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ChangeEvent, type FocusEvent } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -8,6 +8,7 @@ import { PatternFormat } from 'react-number-format'
 import Button from './Button'
 import Spinner from './Spinner'
 import { createPet } from '@/lib/api'
+import { scrollIntoCenter } from '@/lib/focus'
 import { petFormSchema } from '@/schemas/pet-form-schema'
 
 const DEFAULT_PHONE = '93991185009'
@@ -23,13 +24,9 @@ const EMPTY_VALUES: PetFormValues = {
   sexo: '',
   descricao: '',
   contato: DEFAULT_PHONE,
-}
-
-function scrollIntoCenter(e: FocusEvent<HTMLElement>) {
-  const target = e.target
-  setTimeout(() => {
-    target.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, 300)
+  vacinado: false,
+  vermifugado: false,
+  castrado: false,
 }
 
 // Subcomponente para eliminar a repetição dos três <select> com estrutura idêntica.
@@ -111,6 +108,9 @@ export default function PetForm() {
     formData.append('porte', values.porte)
     formData.append('sexo', values.sexo)
     formData.append('descricao', values.descricao)
+    formData.append('vacinado', values.vacinado ? 'true' : 'false')
+    formData.append('vermifugado', values.vermifugado ? 'true' : 'false')
+    formData.append('castrado', values.castrado ? 'true' : 'false')
     if (photoFile.current) formData.append('file', photoFile.current)
     formData.append('contato', values.contato)
 
@@ -202,6 +202,21 @@ export default function PetForm() {
           />
           {errors.descricao && <p className="formerro">{errors.descricao.message}</p>}
 
+          <div className="flex flex-col gap-2 my-4 text-(--text-color)">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" {...register('vacinado')} className="w-5 h-5 accent-(--bg-color)" />
+              <span className="text-[16px] font-bold">Vacinado</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" {...register('vermifugado')} className="w-5 h-5 accent-(--bg-color)" />
+              <span className="text-[16px] font-bold">Vermifugado</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" {...register('castrado')} className="w-5 h-5 accent-(--bg-color)" />
+              <span className="text-[16px] font-bold">Castrado</span>
+            </label>
+          </div>
+
           <label className="formlabel"> Contato:</label>
           <Controller
             name="contato"
@@ -230,7 +245,6 @@ export default function PetForm() {
           type="submit"
           size={20}
           disabled={status !== 'inicio'}
-          className={status === 'inicio' ? '' : 'cursor-default bg-gray-300 text-gray-600 hover:bg-gray-300 hover:text-gray-600'}
         />
       </form>
 
