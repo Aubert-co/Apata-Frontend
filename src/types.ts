@@ -14,6 +14,7 @@ export interface Pet {
   vacinado: boolean | null
   vermifugado: boolean | null
   castrado: boolean | null
+  adotado: boolean
 }
 
 export interface PetFormValues {
@@ -33,6 +34,7 @@ export interface PetFilters {
   species: Species | ''
   sex: Sex | ''
   size: Size | ''
+  adopted: boolean | ''
 }
 
 export interface LoginPayload {
