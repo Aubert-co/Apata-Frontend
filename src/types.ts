@@ -15,7 +15,6 @@ export interface Pet {
   vacinado: boolean | null
   vermifugado: boolean | null
   castrado: boolean | null
-  adotado: boolean
 }
 
 export interface PetFormValues {

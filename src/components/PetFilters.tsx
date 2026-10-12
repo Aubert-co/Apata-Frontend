@@ -1,7 +1,7 @@
 'use client'
 
 import Search from './Search'
-import type { PetFilters as PetFiltersValue, Sex, Size, Species, TypeUser } from '@/types'
+import type { PetFilters as PetFiltersValue, Sex, Size, Species } from '@/types'
 
 interface PetFiltersProps {
   filters: PetFiltersValue
